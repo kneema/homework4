@@ -1,4 +1,4 @@
-# homework4
+# Homework Four
 Homework 4: Coding a Quiz
 
 This looks at creating a quiz that is interactive using Javascript and JQuery

@@ -14,12 +14,23 @@
 </head>
 
 <body>
-    <div id="quiz"></div>
-    <button id="submit">Submit Quiz</button>
+  <div id="container">
+    <button id="start">Start Quiz</div>
     <div id="results"></div>
-    <div class="timer text-center p-2">
-      <h4>Time remaining</h4>
-      <p class="seconds">20</p>
+      <div id="quiz" class="hidden">
+          <div id="question"></div>
+          <div id="choices">
+              <div class="choice" id="A" onclick="checkAnswer('a')"></div>
+              <div class="choice" id="B" onclick="checkAnswer('b')"></div>
+              <div class="choice" id="C" onclick="checkAnswer('c')"></div>
+          </div>
+          <div id="timer">
+              <div id="counter"></div>
+          </div>
+          <button id="submit">Next</button>
+          <div id="progress"></div>
+          <div id="scoreContainer" style="display: none"></div>
+      </div>
   </div>
 
   <!-- Optional JavaScript -->

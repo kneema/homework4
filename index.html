@@ -16,20 +16,23 @@
 <body>
   <div id="container">
     <button id="start">Start Quiz</div>
-    <div id="results"></div>
+    <div id="results" class="hidden"> 
+      <h1> Results</h1>
+      <h2>Name and Score</h2>
+      <ol id="list">
+      </ol>
+    </div>
       <div id="quiz" class="hidden">
-          <div id="question"></div>
+          <div id="question">QuestionA</div>
           <div id="choices">
-              <div class="choice" id="A" onclick="checkAnswer('a')"></div>
-              <div class="choice" id="B" onclick="checkAnswer('b')"></div>
-              <div class="choice" id="C" onclick="checkAnswer('c')"></div>
+              <div class="choice" id="A">Answer1</div>
+              <div class="choice" id="B">Answer2</div>
+              <div class="choice" id="C">Answer3</div>
           </div>
           <div id="timer">
-              <div id="counter"></div>
+              <div id="counter">50</div>
           </div>
-          <button id="submit">Next</button>
-          <div id="progress"></div>
-          <div id="scoreContainer" style="display: none"></div>
+          <div id="scoreContainer">0</div>
       </div>
   </div>
 
@@ -45,7 +48,6 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/7053e21479.js" crossorigin="anonymous"></script>
-  <script src="questions.js"></script>
   <script src="app.js"></script>
 </body>
 

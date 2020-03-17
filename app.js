@@ -11,6 +11,7 @@ const progress = document.getElementById("progress");
 const scoreDiv = document.getElementById("scoreContainer");
 const submitButton = document.getElementById('submit');
 const resultsContainer = document.getElementById('results');
+const list = document.getElementById("list");
 
 let questions = [
     {
@@ -63,165 +64,115 @@ let questions = [
 
 // creating some variables
 
-const lastQuestion = (questions.length - 1);
+const lastQuestion = (questions.length);
 let runningQuestion = 0;
-let timerSeconds = 10;
+let timerSeconds = 50;
 const questionTime = 10; // 10s
 let TIMER;
 let score = 0;
+let currentquestion;
 
-// for each question...
-questions.forEach(
-(currentQuestion, questionNumber) => {
-
-      // variable to store the list of possible answers
-      const answers = [];
-
-      // and for each available answer
-      for(letter in currentQuestion.answers){
-
-        // add HTML radio button
-        answers.push(
-          `<label>
-            <input type="radio" name="question${questionNumber}" value="${letter}">
-            ${letter} :
-            ${currentQuestion.answers[letter]}
-          </label>`
-        );
-      }
-
-      // add question and its answers to the output
-      output.push(
-        `<div class="question"> ${currentQuestion.question} </div>
-        <div class="answers"> ${answers.join('')} </div>`
-      );
-    });
-
-  // Combine our output list into one string of HTML and put it on the page
-  quiz.innerHTML = output.join('');
-
-//render question
-function renderQuestion(){
-    question.innerHTML = "<p>"+ q.question +"</p>";
-    ChA.innerHTML = q.ChA;
-    ChB.innerHTML = q.ChB;
-    ChC.innerHTML = q.ChC;
-}
-
-// start quiz
-function startQuiz(){
-    start.style.display = "none";
-    renderQuestion();
-    quiz.style.display = "block";
-    renderProgress();
-    renderCounter();
-    TIMER = setInterval(renderCounter,1000); // 1000ms = 1s
-}
-start.addEventListener("click",startQuiz);
-
-// render progress
-function renderProgress(){
-    for(let qIndex = 0; qIndex <= lastQuestion; qIndex++){
-        progress.innerHTML += "<div class='prog' id="+ qIndex +"></div>";
-    }
-}
-
-// counter render
-
+// counter render function
 function renderCounter(){
-    if(count <= questionTime){
-        counter.innerHTML = count;
-        timeGauge.style.width = count * gaugeUnit + "px";
-        count++
-    }else{
-        count = 0;
-        // change progress color to red
-        answerIsWrong();
-        if(runningQuestion < lastQuestion){
-            runningQuestion++;
-            renderQuestion();
-        }else{
-            // end the quiz and show the score
-            clearInterval(TIMER);
-            scoreRender();
-        }
-    }
+  timerSeconds--;
+  console.log(timerSeconds);
+  counter.innerText= timerSeconds;
+if (timerSeconds<=0){
+  endGame();
+}
+  
 }
 
-// checkAnswer
+// creating a function for start button and to reveal quiz and hide start button
+start.addEventListener("click",function(){
+console.log(quiz);
+fillnextfunction();
+quiz.classList.remove("hidden");
+start.classList.add("hidden");
+TIMER = setInterval(renderCounter,1000); // 1000ms = 1s
 
-function checkAnswer(answer){
-    if( answer == questions[runningQuestion].correct){
-        // answer is correct
-        score++;
-        // change progress color to green
-        answerIsCorrect();
-    }else{
-        // answer is wrong
-        // change progress color to red
-        answerIsWrong();
-    }
-    count = 0;
-    if(runningQuestion < lastQuestion){
-        runningQuestion++;
-        renderQuestion();
-    }else{
-        // end the quiz and show the score
-        clearInterval(TIMER);
-        scoreRender();
-    }
-}
-
-// if answer is correct
-if(userAnswer === currentQuestion.correct){
-    // add to the number of correct answers
-    numCorrect++;
-
-    // color the answers green
-    answerContainers[questionNumber].style.color = 'lightgreen';
-  }
-  // if answer is wrong or blank
-  else{
-    // color the answers red
-    answerContainers[questionNumber].style.color = 'red';
-  }
-//Show results of the quiz
-function showResults(){
-    // gather answer containers from our quiz
-  const answerContainers = quizContainer.querySelectorAll('.answers');
-
-  // keep track of user's answers
-  let numCorrect = 0;
-
-  // for each question...
-  questions.forEach( (currentQuestion, questionNumber) => {
-
-    // find selected answer
-    const answerContainer = answerContainers[questionNumber];
-    const selector = `input[name=question${questionNumber}]:checked`;
-    const userAnswer = (answerContainer.querySelector(selector) || {}).value;
-
-}  
-// on submit, show results
- submitButton.addEventListener('click', showResults);
-
-// show number of correct answers out of total
-resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
-
-// score render
-function scoreRender(){
-    scoreDiv.style.display = "block";
-    
-    // calculate the amount of question percent answered by the user
-    const scorePerCent = Math.round(100 * score/questions.length);
-    
-    // choose the image based on the scorePerCent
-    let img = (scorePerCent >= 80) ? "img/5.png" :
-              (scorePerCent >= 60) ? "img/4.png" :
-              (scorePerCent >= 40) ? "img/3.png" :
-              (scorePerCent >= 20) ? "img/2.png" :
-              "img/1.png";
-    
-    scoreDiv.innerHTML = "<img src="+ img +">";
-    scoreDiv.innerHTML += "<p>"+ scorePerCent +"%</p>";
 });
+
+//Filling in questions from the array (objects) above to the Question and answers index
+function fillnextfunction(){
+  //Seeing if questions are at end
+  if (runningQuestion>=lastQuestion){
+   endGame()
+  }else{
+  currentquestion = questions[runningQuestion];
+  console.log(currentquestion)
+  //Changing innerHTML of question and answers- obtaining from the array of objects above.
+  question.innerHTML = "<p>"+ currentquestion.question +"</p>";
+  ChA.innerHTML = currentquestion.answers.ChA;
+  ChB.innerHTML = currentquestion.answers.ChB;
+  ChC.innerHTML = currentquestion.answers.ChC;
+  }
+
+
+};
+
+//Create function to check answers
+function checkAnswers(event){
+var selectedChoice = event.currentTarget.id;
+console.log(event.currentTarget.id);
+// Determining if selected choice is equal to correct answer
+if (selectedChoice===currentquestion.correct){
+  console.log("Correct");
+  //Add 10 point to score for being correct
+  score+=10;
+  scoreDiv.innerText = score;
+
+//If incorrect
+
+}else {
+//Subtract time from timer
+timerSeconds-=5;
+}
+//Go to next question
+runningQuestion++;
+fillnextfunction();
+}
+
+//End the Game function
+function endGame(){
+clearInterval(TIMER);
+quiz.classList.add("hidden")
+resultsContainer.classList.remove("hidden")
+var playerName = prompt("Type in your name!")
+var scoreboard ={
+  name: playerName,
+  score: score
+}
+//get item current "score" and historical scores
+var loadScores = localStorage.getItem("score")
+//check for storage
+if (loadScores) {
+loadScores = JSON.parse(loadScores);
+
+}else{
+  loadScores = []
+}
+//push adds on to the existing array
+loadScores.push(scoreboard);
+console.log(loadScores);
+//change to string
+var loadScoresstring = JSON.stringify(loadScores);
+console.log(loadScoresstring);
+//send array back to local storage
+localStorage.setItem("score",loadScoresstring);
+//append list
+
+loadScores.forEach(function(entry){
+  //to construct html input for list 
+  var listhtml = "<li>"+entry.name+"  -  "+entry.score+"</li>";
+  //+ = appends to the end 
+  list.innerHTML += listhtml;
+  });
+}
+
+
+//create click events for answers
+ChA.addEventListener("click",checkAnswers);
+ChB.addEventListener("click",checkAnswers);
+ChC.addEventListener("click",checkAnswers);
+

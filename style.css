@@ -116,7 +116,7 @@ body{
 		margin-bottom: 20px;
 }
 .scroll {
-    max-height: 100px;
+    max-height: 450px;
     overflow-y: auto;
 }
 #restartclick {

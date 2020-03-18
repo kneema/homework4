@@ -12,50 +12,51 @@ const scoreDiv = document.getElementById("scoreContainer");
 const submitButton = document.getElementById('submit');
 const resultsContainer = document.getElementById('results');
 const list = document.getElementById("list");
+const startcontainer = document.getElementById("startcard");
 
 let questions = [
     {
       question: "Who invented JavaScript?",
       answers: {
-        ChA: "Douglas Crockford",
-        ChB: "Sheryl Sandberg",
-        ChC: "Brendan Eich"
+        ChA: "A. Douglas Crockford",
+        ChB: "B. Sheryl Sandberg",
+        ChC: "C. Brendan Eich"
       },
       correct: "C"
     },
     {
       question: "Which one of these is a JavaScript package manager?",
       answers: {
-        ChA: "Node.js",
-        ChB: "TypeScript",
-        ChC: "npm"
+        ChA: "A. Node.js",
+        ChB: "B. TypeScript",
+        ChC: "C. npm"
       },
       correct: "C"
     },
     {
       question: "Which tool can you use to ensure code quality?",
       answers: {
-        ChA: "Angular",
-        ChB: "jQuery",
-        ChC: "ESLint"
+        ChA: "A. Angular",
+        ChB: "B. jQuery",
+        ChC: "C. ESLint"
       },
       correct: "C"
     },
     {
       question: "What are variables used for in JavaScript?",
       answers: {
-          ChA: "For changing language settings",
-          ChB: "For storing or holding data",
-          ChC: "For changing a value's data type"
+          ChA: "A. For changing language settings",
+          ChB: "B. For storing or holding data",
+          ChC: "C. For changing a value's data type"
       },
       correct: "B"
     },
     {
       question: "What is the correct way to call the random method on the Math global object?",
       answers: {
-          ChA: "random.Math()",
-          ChB: "Math(randon)",
-          ChC: "Math.random()"
+          ChA: "A. random.Math()",
+          ChB: "B. Math(randon)",
+          ChC: "C. Math.random()"
       },
       correct: "C"
     } 
@@ -89,6 +90,7 @@ console.log(quiz);
 fillnextfunction();
 quiz.classList.remove("hidden");
 start.classList.add("hidden");
+startcard.classList.add("hidden");
 TIMER = setInterval(renderCounter,1000); // 1000ms = 1s
 
 });
@@ -138,7 +140,7 @@ function endGame(){
 clearInterval(TIMER);
 quiz.classList.add("hidden")
 resultsContainer.classList.remove("hidden")
-var playerName = prompt("Type in your name!")
+var playerName = prompt("Type in your first name!")
 var scoreboard ={
   name: playerName,
   score: score

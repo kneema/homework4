@@ -3,16 +3,80 @@ body{
 	font-family: sans-serif;
 	color: #333;
 }
-.question{
+#question{
+	font-family: sans-serif;
+	font-size: 20px;
+	background-color: #279;
+	color: #fff;
+	border: 0px;
+	border-radius: 3px;
+	padding: 20px;
+	cursor: pointer;
+	margin-bottom: 20px;
 	font-weight: 600;
 }
-.answers {
-  margin-bottom: 20px;
+#results{
+	font-weight: 600;
+	font-family: sans-serif;
+	font-size: 20px;
+	color: rgb(20, 19, 19);
+	border: 0px;
+	border-radius: 3px;
+	padding: 30px;
+	cursor: pointer;
+	margin-bottom: 30px;
 }
-.answers label{
+
+#list{
+	font-weight: 600;
+	font-family: sans-serif;
+	font-size: 10px;
+	background-color: rgb(232, 242, 247);
+	color: rgb(20, 19, 19);
+	padding: 25px;
+	cursor: pointer;
+	margin-bottom: 25px;
+}
+#ChA {
+	padding: 40px;
+	cursor: pointer;
+	font-weight: 600;
+	font-family: sans-serif;
+	font-size: 10px;
+	background-color: rgb(232, 242, 247);
+	color: rgb(20, 19, 19);
+	margin-bottom: 25px;
+	margin-left: 30px;
+  
+}
+#ChB {
+	padding: 40px;
+	cursor: pointer;
+	font-weight: 600;
+	font-family: sans-serif;
+	font-size: 10px;
+	background-color: rgb(232, 242, 247);
+	color: rgb(20, 19, 19);
+	margin-bottom: 25px;
+	margin-left: 30px;
+  
+}
+#ChC {
+	padding: 40px;
+	cursor: pointer;
+	font-weight: 600;
+	font-family: sans-serif;
+	font-size: 10px;
+	background-color: rgb(232, 242, 247);
+	color: rgb(20, 19, 19);
+	margin-bottom: 25px;
+	margin-left: 30px;
+  
+}
+#answers label{
   display: block;
 }
-#submit{
+#start{
 	font-family: sans-serif;
 	font-size: 20px;
 	background-color: #279;
@@ -23,10 +87,25 @@ body{
 	cursor: pointer;
 	margin-bottom: 20px;
 }
-#submit:hover{
+#start:hover{
 	background-color: #38a;
 }
 
 .hidden{
 	display: none;
+}
+.quiz{
+	font-family: sans-serif;
+	font-size: 20px;
+	background-color: #279;
+	color: #fff;
+	border: 0px;
+	border-radius: 3px;
+	padding: 20px;
+	cursor: pointer;
+	margin-bottom: 20px;
+}
+.scroll {
+    max-height: 100px;
+    overflow-y: auto;
 }
